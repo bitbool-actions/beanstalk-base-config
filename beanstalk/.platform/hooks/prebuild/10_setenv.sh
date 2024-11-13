@@ -9,7 +9,7 @@ VAR_SYSTEMENV=$(/opt/elasticbeanstalk/bin/get-config environment -k SYSTEMENV 2>
 VAR_APPLICATION=$(/opt/elasticbeanstalk/bin/get-config environment -k APPLICATION 2>/dev/null)
 #secrets can be comma separated
 VAR_SECRETS=$(/opt/elasticbeanstalk/bin/get-config environment -k SECRETS 2>/dev/null)
-[ -z "$VAR_SECRETS"] && VAR_SECRETS="secrets"
+[ -z "$VAR_SECRETS"] && VAR_SECRETS="secrets,nginx"
 
 fetch_secret() {
 	SECRET=$1
@@ -31,8 +31,9 @@ fetch_secret() {
 
 }
 
+mkdir -p .envs
 for secret in ${VAR_SECRETS//,/ }
 do
-        fetch_secret ${VAR_PROJECT}/${VAR_SYSTEMENV}/${VAR_APPLICATION}/${secret} true .env.${secret}
+        fetch_secret ${VAR_PROJECT}/${VAR_SYSTEMENV}/${VAR_APPLICATION}/${secret} true .envs/.env.${secret}
 done
 
