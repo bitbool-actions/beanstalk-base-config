@@ -1,0 +1,12 @@
+name: "beanstalk common config"
+description: "base config for beanstalk"
+inputs: 
+  BEANSTALK_ROOT:
+    required: false
+    default: ".github/beanstalk"
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'award'
+  color: 'green'    
