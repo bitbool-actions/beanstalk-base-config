@@ -34,6 +34,6 @@ fetch_secret() {
 mkdir -p .envs
 for secret in ${VAR_SECRETS//,/ }
 do
-        fetch_secret ${VAR_PROJECT}/${VAR_SYSTEMENV}/${VAR_APPLICATION}/${secret} true .envs/.env.${secret}
+        fetch_secret ${VAR_PROJECT}/${VAR_SYSTEMENV}/${VAR_APPLICATION}/${secret} true .envs/env.${secret}
 done
 
